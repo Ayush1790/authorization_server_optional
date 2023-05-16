@@ -1,0 +1,9 @@
+<?php
+require_once APP_PATH . '/assets/header.php';
+echo "<table class='table table-bordered table-striped'><tr><th>Key</th><th>Value</th></tr>";
+foreach ($data as $key => $value) {
+   echo "<tr><td>$key</td><td>$value</td></tr>";
+}
+echo "</table>";
+
+

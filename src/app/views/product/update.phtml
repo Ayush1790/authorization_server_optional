@@ -1,0 +1,29 @@
+<!-- Update Products Page -->
+<?php require_once APP_PATH.'/assets/header.php';?>
+<div style="margin-left:370px ;width:400px; background-color:aliceblue;border-radius:10px;margin-top:5px "
+class="text-center p-2">
+    <h2>Update Products</h2>
+    <?php echo $this->tag->form("product/updateData"); ?>
+    <br>
+    <p>
+        <label for="name" class="col-4">Name</label>
+        <?php echo $this->tag->textField(["name", 'class' => 'form-control', 'value' => $data->name]); ?>
+    </p>
+    <p>
+        <label for="description">Catageory</label>
+        <?php echo $this->tag->textField(["desc", 'class' => 'form-control', 'value' => $data->desc]); ?>
+    </p>
+    <p>
+        <label for="price">Price</label>
+        <?php echo $this->tag->numericField(["price", 'class' => 'form-control', 'value' => $data->price]); ?>
+    </p>
+    <p>
+        <label for="stock">Stock</label>
+        <?php echo $this->tag->numericField(["stock", 'class' => 'form-control', 'value' => $data->stock]); ?>
+    </p>
+    <input type='hidden' value=<?php echo $data->_id ?> name='id'>
+    <p>
+        <?php echo $this->tag->submitButton(["Update", 'class' => 'btn btn-primary', 'name' => 'submit']); ?>
+    </p>
+    </form>
+</div>
