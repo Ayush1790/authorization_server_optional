@@ -16,8 +16,43 @@ class ProductController extends Controller
 
     public function addAction()
     {
+        $count=0;
+        $countMetaData=0;
         $collection = $this->mongo->products;
-        $insertElement = $collection->insertOne($_POST);
+        if (!$_POST['additionaldata'][0]=='') {
+            $count = count($_POST['additionaldata']);
+        }
+        if (!$_POST['metaKey'][0]=='') {
+            $countMetaData = count($_POST['metaKey']);
+        }
+        $meta = [];
+        $variations = [];
+        if ($count == 0) {
+            $meta[0] = "no meta data found";
+        }
+        if ($countMetaData == 0) {
+            $variations[0] = 'no variations found';
+        }
+        for ($i = 0; $i < $count; $i++) {
+            $key = $_POST['additionaldata'][$i];
+            $value = $_POST['additionaldatavalue'][$i];
+            $meta[$key] = $value;
+        }
+        for ($i = 0; $i < $countMetaData; $i++) {
+            $key = $_POST['metaKey'][$i];
+            $value = $_POST['metaValue'][$i] . "=>" . $_POST['metaValuePrice'][$i];
+            $variations[$key] = $value;
+        }
+        $insertElement = $collection->insertOne(
+            [
+                'name' => $this->request->get('name'),
+                'desc' => $this->request->get('desc'),
+                'price' => $this->request->get('price'),
+                'stock' => $this->request->get('stock'),
+                'additionalData' => $meta,
+                'variations' => $variations,
+            ]
+        );
         if ($insertElement->getInsertedCount() == 1) {
             echo "<h1>Data Inserted Succesfully</h1>";
         } else {
@@ -86,6 +121,6 @@ class ProductController extends Controller
         $id = $this->request->get('id');
         $collection = $this->mongo->products;
         $res = $collection->findOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
-        $this->view->data=$res;
+        $this->view->data = $res;
     }
 }

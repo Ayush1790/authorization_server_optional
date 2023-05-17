@@ -1,0 +1,70 @@
+<?php require_once APP_PATH . '/assets/header.php';
+if (isset($_GET['update'])) {
+    $id = $this->request->get('id');
+    $collection = $this->mongo->order;
+    $result = $collection->findOne(['_id' => new \MongoDB\BSON\ObjectId($id)]);
+    echo "<form action='update' method='post'>
+    <div class='row border border-danger p-3 m-2'>
+    <div class='col-9'><select name='status' class='form-control'>
+    <option>$result->status</option>
+    <option>Paid</option>
+    <option>Processing</option>
+    <option>Dispatched</option>
+    <option>Shipped</option>
+    <option>Refunded</option>
+    </select></div>
+    <input type='hidden' value='$id'  name='id'>
+    <div class='col-2'><input type='submit' value='Submit' class='btn btn-info' name='submit'></div>
+    </div>
+    </form>
+    ";
+}
+?>
+
+<form action="view">
+    <div class='row border border-primary p-3 m-2'>
+        <div class="col-2">
+            <select name='status' class='form-control'>
+                <option>Paid</option>
+                <option>processing</option>
+                <option>Dispatched</option>
+                <option>Shipped</option>
+                <option>Refunded</option>
+            </select>
+        </div>
+        <div class="col-2">
+            <select name='time' class='form-control'>
+                <option>select any one</option>
+                <option >today</option>
+                <option>this_week</option>
+                <option>this_month</option>
+            </select>
+        </div>
+        <div class="col-3"><input type="text" name='startDate' class="form-control"
+         placeholder='start date in YYYY/MM/DD format'></div>
+        <div class="col-3"><input type="text" name='endDate'   class="form-control"
+         placeholder='end date in YYYY/MM/DD format'></div>
+        <div class="col-2"><input type="submit" value="Search" class='btn btn-info' name='search'></div>
+    </div>
+</form>
+
+<table class='table table-bordered table-striped'>
+    <caption>table showing orders details</caption>
+    <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Address</th>
+            <th>zip</th>
+            <th>product</th>
+            <th>variation</th>
+            <th>qty</th>
+            <th>status</th>
+            <th>date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php echo $data ?>
+    </tbody>
+</table>
+
