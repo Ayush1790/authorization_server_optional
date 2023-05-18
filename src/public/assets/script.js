@@ -5,7 +5,7 @@ function updateData(id) {
         type: 'post',
         datatype: 'json'
     }).done(function () {
-        window.location = 'update';
+        window.location = 'admin/product/update';
     })
 }
 
@@ -16,7 +16,7 @@ function deleteData(id) {
         type: 'post',
         datatype: 'json'
     }).done(function () {
-        window.location = 'view';
+        window.location = 'admin/product/view';
     })
 }
 let count = 1;
@@ -47,7 +47,7 @@ function addOrder(){
         type:'post',
         datatype:'text'
     }).done(function(value){
-        window.location='order';
+        window.location='admin/product/order';
     })
 
 }

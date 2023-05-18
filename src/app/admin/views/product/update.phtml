@@ -1,9 +1,10 @@
 <!-- Update Products Page -->
-<?php require_once APP_PATH.'/assets/header.php';?>
+<?php  require_once APP_PATH.'/admin/assets/header.php';?>
+
 <div style="margin-left:370px ;width:400px; background-color:aliceblue;border-radius:10px;margin-top:5px "
 class="text-center p-2">
     <h2>Update Products</h2>
-    <?php echo $this->tag->form("product/updateData"); ?>
+    <?php echo $this->tag->form("../admin/product/updateData"); ?>
     <br>
     <p>
         <label for="name" class="col-4">Name</label>

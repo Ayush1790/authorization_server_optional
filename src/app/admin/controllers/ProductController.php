@@ -1,5 +1,7 @@
 <?php
 
+namespace Multi\admin\Controllers;
+
 use Phalcon\Mvc\Controller;
 use Phalcon\Escaper;
 
@@ -16,13 +18,13 @@ class ProductController extends Controller
 
     public function addAction()
     {
-        $count=0;
-        $countMetaData=0;
+        $count = 0;
+        $countMetaData = 0;
         $collection = $this->mongo->products;
-        if (!$_POST['additionaldata'][0]=='') {
+        if (!$_POST['additionaldata'][0] == '') {
             $count = count($_POST['additionaldata']);
         }
-        if (!$_POST['metaKey'][0]=='') {
+        if (!$_POST['metaKey'][0] == '') {
             $countMetaData = count($_POST['metaKey']);
         }
         $meta = [];
@@ -113,7 +115,7 @@ class ProductController extends Controller
                 'stock' => $escaper->escapeHtml($this->request->getPost('stock')),
             ]]
         );
-        $this->response->redirect('product/view');
+        $this->response->redirect('../admin/product/view');
     }
 
     public function fullDetailAction()

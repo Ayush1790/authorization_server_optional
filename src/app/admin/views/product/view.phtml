@@ -1,0 +1,25 @@
+<?php require_once APP_PATH.'/admin/assets/header.php';?>
+
+<form action="view" >
+    <div class='row border border-primary p-3 m-2'>
+        <div class="col-10"><input type="text" name="searchName" placeholder="Enter Product Name"
+        class="form-control"></div>
+        <div class="col-2"><input type="submit" value="Search" class='btn btn-info' name='search'></div>
+    </div>
+</form>
+<table class='table table-bordered table-striped'>
+    <caption>table showing product details</caption>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Meta Data</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php echo $data ?>
+    </tbody>
+</table>
