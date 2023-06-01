@@ -1,7 +1,7 @@
 version: "3.3"
 
 services:
-  web-server:
+  src:
     build:
       dockerfile: php.Dockerfile
       context: .
@@ -10,6 +10,16 @@ services:
       - "./src/:/var/www/html/"
     ports:
       - "8080:80"
+  token:
+    build:
+      dockerfile: php.Dockerfile
+      context: .
+    restart: always
+    volumes:
+      - "./token/:/var/www/html/"
+    ports:
+      - "3000:80"
+
   mysql-server:
     image: mysql:8.0.19
     restart: always
